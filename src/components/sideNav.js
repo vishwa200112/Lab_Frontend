@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { RiSecurePaymentLine } from "react-icons/ri";
+
+import { CiMedicalCross, CiMedicalClipboard } from "react-icons/ci";
+import { FaHandHoldingMedical,FaHouseMedical } from "react-icons/fa6";
+import { BiSpreadsheet } from "react-icons/bi";
+import { FaUserFriends } from "react-icons/fa";
 import { TbReportMedical } from "react-icons/tb";
-import { MdLocalHospital } from "react-icons/md";
+import { MdPageview } from "react-icons/md";
+import { SiCashapp } from "react-icons/si";
+import { ImLab } from "react-icons/im";
 import { TbLogout } from "react-icons/tb";
-import { BsPeople } from "react-icons/bs";
+import { MdOutlineStreetview } from "react-icons/md";
+import { MdManageSearch } from "react-icons/md";
+
+
 import { HiOutlineClipboardList, HiOutlinePencilAlt } from "react-icons/hi";
 
 export const SideNav = () => {
   const [isNavOpen, setNavOpen] = useState(false);
- 
+
   return (
     <nav className="nav">
       <div
@@ -25,9 +34,26 @@ export const SideNav = () => {
       >
         {/* -------log - dashbord - name----------- */}
         <div className="logo-con">
+        <div className="page-bg-min-con-nav">
+          <div className="page-background-nav page-back-1-nav">
+            <FaHouseMedical />
+          </div>
+          <div className="page-background-nav page-back-5-nav">
+            <CiMedicalCross />
+          </div>
+          <div className="page-background-nav page-back-2-nav">
+            <CiMedicalCross />
+          </div>
+          <div className="page-background-nav page-back-3-nav">
+            <FaHandHoldingMedical />
+          </div>
+          <div className="page-background-nav page-back-4-nav">
+            <CiMedicalClipboard />
+          </div>
+        </div>
           <div className="icon-con">
-            <Link className="all-a-icons" to="/adminlogin">
-              < MdLocalHospital className="site-log" />
+            <Link className="all-a-icons" to="/app">
+              <ImLab className="site-log" />
             </Link>
             <h1
               className={`${
@@ -40,7 +66,7 @@ export const SideNav = () => {
           <h1
             className={`${isNavOpen ? "site-name-h1-active" : "site-name-h1"}`}
           >
-            Lab <br /> 
+            Laboratory <br /> 
           </h1>
         </div>
         {/* ------------nav itmes------------------- */}
@@ -56,30 +82,46 @@ export const SideNav = () => {
                 }`}
                 to="/appointments"
               >
-                Request Appointment
+                Appointment
               </Link>
             </NavLink>
           </div>
-
           <div>
-            <NavLink className="nav-item-con" to="/registration">
-              <Link className="all-a-icons" to="/registration">
-                <HiOutlinePencilAlt className="nav-item-icon" />
+            <NavLink className="nav-item-con" to="/viewAppointments">
+              <Link className="all-a-icons" to="/viewAppointments">
+                <MdPageview className="nav-item-icon" />
               </Link>
               <Link
                 className={`${
                   isNavOpen ? "nav-item-con-a-active" : "nav-item-con-a"
                 }`}
-                to="/registration"
+                to="/viewAppointments"
               >
-                Registration Page
+                View Appointment
               </Link>
             </NavLink>
           </div>
           <div>
+            <NavLink className="nav-item-con" to="/TestReport">
+              <Link className="all-a-icons" to="/TestReport">
+                <TbReportMedical className="nav-item-icon" />
+              </Link>
+              <Link
+                className={`${
+                  isNavOpen ? "nav-item-con-a-active" : "nav-item-con-a"
+                }`}
+                to="/TestReport"
+              >
+                Test Report
+              </Link>
+            </NavLink>
+          </div>
+        
+         
+          <div>
             <NavLink className="nav-item-con" to="/testdetails">
               <Link className="all-a-icons" to="/testdetails">
-                <TbReportMedical className="nav-item-icon" />
+                <MdManageSearch className="nav-item-icon" />
               </Link>
               <Link
                 className={`${
@@ -87,14 +129,59 @@ export const SideNav = () => {
                 }`}
                 to="/testdetails"
               >
-                Test results Page
+                Patient Details
+              </Link>
+            </NavLink>
+          </div>
+          <div>
+            <NavLink className="nav-item-con" to="/PatientUpDel">
+              <Link className="all-a-icons" to="/PatientUpDel">
+                <FaUserFriends className="nav-item-icon" />
+              </Link>
+              <Link
+                className={`${
+                  isNavOpen ? "nav-item-con-a-active" : "nav-item-con-a"
+                }`}
+                to="/PatientUpDel"
+              >
+                Patients <br></br> Update/Delete
+              </Link>
+            </NavLink>
+          </div>
+          <div>
+            <NavLink className="nav-item-con" to="/registration">
+              <Link className="all-a-icons" to="/registration">
+                <BiSpreadsheet className="nav-item-icon" />
+              </Link>
+              <Link
+                className={`${
+                  isNavOpen ? "nav-item-con-a-active" : "nav-item-con-a"
+                }`}
+                to="/registration"
+              >
+                Registration
+              </Link>
+            </NavLink>
+          </div>
+          <div>
+            <NavLink className="nav-item-con" to="/adminregistration">
+              <Link className="all-a-icons" to="/adminregistration">
+                <MdOutlineStreetview className="nav-item-icon" />
+              </Link>
+              <Link
+                className={`${
+                  isNavOpen ? "nav-item-con-a-active" : "nav-item-con-a"
+                }`}
+                to="/adminregistration"
+              >
+                Admin Registration
               </Link>
             </NavLink>
           </div>
           <div>
             <NavLink className="nav-item-con" to="/payment">
               <Link className="all-a-icons" to="/payment">
-                <RiSecurePaymentLine className="nav-item-icon" />
+                <SiCashapp className="nav-item-icon" />
               </Link>
               <Link
                 className={`${
@@ -102,42 +189,27 @@ export const SideNav = () => {
                 }`}
                 to="/payment"
               >
-                Payments Page
-              </Link>
-            </NavLink>
-          </div>
-          <div>
-            <NavLink className="nav-item-con" to="/patients">
-              <Link className="all-a-icons" to="/patients">
-                <BsPeople className="nav-item-icon" />
-              </Link>
-              <Link
-                className={`${
-                  isNavOpen ? "nav-item-con-a-active" : "nav-item-con-a"
-                }`}
-                to="/patients"
-              >
-                Patients Details
+                Payment
               </Link>
             </NavLink>
           </div>
         </div>
         {/* ------------nav itmes--end----------------- */}
         <div className={`logout-con ${isNavOpen ? "logout-con-active" : ""}`}>
-          <span className="admin-span">Welcome to Vish Labs </span>
+          <span className="admin-span">Welcome Admin</span>
           <Link
             className={`${isNavOpen ? "logout-active" : "logout"}`}
-            to="/patientlogin"
+            to=""
           >
             <Link
               className={`${
                 isNavOpen ? "nav-item-con-a-active" : "nav-item-con-a"
               }`}
-              to="/patientlogin"
+              to=""
             >
               Log Out
             </Link>
-            <Link className="all-a-icons" to="/patientlogin">
+            <Link className="all-a-icons" to="/adminlogin">
               <TbLogout className="nav-item-icon" />
             </Link>
           </Link>

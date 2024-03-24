@@ -1,19 +1,19 @@
 :root{
     /*--------------Colors------------------*/
-    --h-dark-blue:#24bc5d;
+    --h-dark-blue:#0a700f;
     --hl-dark-blue:#070748;
     --dark-blue:#03045e;
-    --light-blue:#c3c9cf;
+    --light-blue:#ffffff;
     --light2-blue:#00b4d8;
     --light3-blue: #369dc5;
     --light4-blue: #caf0f8;
-    --text-white: #ffffff;
+    --text-white: #FFFF;
     --error-msg:red;
     --no-error-msg: green;
 
-    --light-blue-form:#0077b6;
-    --h-dark-blue-form:#07213b;
-    --text-white-form: #FFFF;
+    --light-blue-form:#b8b8b8;
+    --h-dark-blue-form:#ececec;
+    --text-white-form: #022a65;
     --bg-white-form: #FFFF;
 
     /*--------------width & hight------------------*/
@@ -23,13 +23,13 @@
     --nav-min-hight: 90vh;
     --nav-itmes-max-h: 10rem;
     /*---------------gap size-----------------*/
-    --con-6px-gap: 2rem;
+    --con-6px-gap: 1rem;
     /*----------------font sizes----------------*/
     --fontsize-nav-site-name-25: 2rem;
-    --fontsize-nav-site-logo: 3rem;
-    --fontsize-nav-bar-links-18: 1.4rem;
+    --fontsize-nav-site-logo: 2rem;
+    --fontsize-nav-bar-links-18: 1.5rem;
     --fontsize-nav-bar-links-18-d: 1.6rem;
-    --fontsize-nav-bar-links-icon: 1.7rem;
+    --fontsize-nav-bar-links-icon: 2rem;
     --fontsize-nav-bar-links-hover: 1.6rem;
     --fontsize-nav-bar-search-18: 0.84375rem;
     --fontsize-nav-bar-log-tital-25: 1.5625rem;
@@ -37,10 +37,10 @@
     --fontsize-from-input-25: 1.4rem;
     --font-weight-input-25: 500;
 
-    --fontsize-from-button: 1.9rem;
+    --fontsize-from-button: 1.7rem;
 
     /*---------------border radiuos-----------------*/
-    --bg-bo-rds: 3rem;
+    --bg-bo-rds: 1rem;
     --bg-bo-rds-m-size: 4rem;
 /*--------------------------------*/
 /*--------------------------------*/

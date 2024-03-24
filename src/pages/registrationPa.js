@@ -1,16 +1,15 @@
 // import { useRef } from "react";
-
+import { HiOutlinePencilAlt } from "react-icons/hi";
 import { CiMedicalCross, CiMedicalClipboard } from "react-icons/ci";
-import { FaHandHoldingMedical, FaHouseMedical } from "react-icons/fa6";
-
-import { IoIosCreate } from "react-icons/io";
-
+import { FaHandHoldingMedical,FaHouseMedical } from "react-icons/fa6";
 import SelectDrop from "../components/selectDrop";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FormInput from "../components/formInput";
-import { useState } from "react";
+import { useState} from "react";
 import axios from "axios";
-export default function Registration() {
+
+export default function RegistrationPa() {
+  
   const [values, setValues] = useState({
     patientFName: "",
     patientLName: "",
@@ -21,7 +20,7 @@ export default function Registration() {
     gender: "",
   });
   const [isLoding, setIsLoding] = useState(false);
-
+ 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -30,26 +29,27 @@ export default function Registration() {
     e.preventDefault();
     setIsLoding(true);
     try {
-      const responce = await axios.post(
-        "http://localhost:9098/api/patient/Reg",
-        {
-          patientFName: values.patientFName,
-          patientLName: values.patientLName,
-          number: values.number,
-          email: values.email,
-          password: values.password,
-          phonenumber: values.phonenumber,
-          gender: values.gender,
-        }
-      );
-      alert("Patient Registration Successful");
-    } catch (err) {
+      const responce = await axios.post('http://localhost:9098/api/patient/Reg', {
+        patientFName: values.patientFName,
+        patientLName: values.patientLName,
+        number: values.number, 
+        email: values.email,
+        password: values.password,
+        phonenumber: values.phonenumber,
+        gender: values.gender
+    });
+    alert("Patient Registration Successful");
+   
+    }
+    catch(err){
       console.log(err);
-      alert("Patient already exsist or invalid email Registration Failure!");
+      alert("Patient Registration Failure!");
     }
     setIsLoding(false);
-  };
+  }
 
+ 
+ 
   const inputs = [
     {
       id: 10,
@@ -93,13 +93,14 @@ export default function Registration() {
       label: "Phone Number",
       required: true,
     },
+   
   ];
 
   const selectapinputs = [
     {
       id: 55,
       inpuConClass: "fromInput field-con gender",
-
+     
       name: "gender",
       type: "text",
       optionName1: "Please Select Your Gender",
@@ -154,33 +155,13 @@ export default function Registration() {
     },
   ];
 
+
   return (
     <main className="reg-from-center">
       <div className="page-name-con">
-      <div className="page-bg-min-con-nav">
-          <div className="page-background-nav page-back-1-nav">
-           
-            <CiMedicalCross />
-          </div>
-          <div className="page-background-nav page-back-3-nav">
-            
-            <CiMedicalCross />
-          </div>
-          <div className="page-background-nav page-back-2-nav">
-            <FaHandHoldingMedical />
-          </div>
-          <div className="page-background-nav page-back-4-nav">
-          <CiMedicalClipboard />
-          <FaHouseMedical />
-          </div>
-         
-          <div className="page-background-nav page-back-5-nav">
-            <CiMedicalClipboard />
-          </div>
-        </div>
         <div className="page-name-spaceholder"></div>
         <span className="page-log-span">
-          <IoIosCreate />
+          <HiOutlinePencilAlt />
         </span>
         <h1 className="page-name-h1">Registration</h1>
       </div>
@@ -206,7 +187,7 @@ export default function Registration() {
 
         <div className="form-name-logo-con">
           <div className="form-icon-con">
-            <IoIosCreate />
+            <HiOutlinePencilAlt />
           </div>
           <div className="form-name-con">
             <span>Patient Registration</span>
@@ -230,7 +211,7 @@ export default function Registration() {
               onChange={onChange}
             />
           ))}
-          {inputs2.map((input) => (
+           {inputs2.map((input) => (
             <FormInput
               key={input.id}
               {...input}
@@ -239,8 +220,20 @@ export default function Registration() {
             />
           ))}
 
-          <button disabled={isLoding}>Submit</button>
+          <button
+          disabled={isLoding}
+          >Sign Up</button>
         </form>
+        <p className="alredy-have-a-p">
+          Already registered?
+          <br />
+        </p>
+        <span className="sign-in-span">
+          {/*put router link here*/}
+          <Link className="sign-in-link" to="/adminlogin">
+            Sign In
+          </Link>
+        </span>
       </section>
     </main>
   );

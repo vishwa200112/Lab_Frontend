@@ -1,114 +1,264 @@
-import { Link } from "react-router-dom";
-import { FaWpforms } from "react-icons/fa6";
+// import { Link } from "react-router-dom";
+import { CiMedicalCross, CiMedicalClipboard } from "react-icons/ci";
+import { FaHandHoldingMedical, FaHouseMedical } from "react-icons/fa6";
+import axios from "axios";
+import { MdCancel } from "react-icons/md";
+import { BiSpreadsheet } from "react-icons/bi";
 import SelectDrop from "../components/selectDrop";
 import FormInput from "../components/formInput";
 
 import { useState } from "react";
 export default function Appointments() {
   const [values, setValues] = useState({
-    patientid: "",
+    patientId: "",
+    testCatagory: "",
+    doctorName: "",
+    date: "",
+    time: "",
     email: "",
-    phonenumber: "",
-    doctorname: "",
-    testcatagory: "",
   });
+  const [isLoding, setIsLoding] = useState(false);
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoding(true);
+    try {
+      const responce = await axios.post(
+        "http://localhost:9098/api/appointment/make",
+        {
+          patientId: values.patientId,
+          testCatagory: values.testCatagory,
+          doctorName: values.doctorName,
+          date: values.date,
+          time: values.time,
+          email: values.email,
+        }
+      );
+      alert("Patient Registration Successful");
+      setIsLoding(false);
+    } catch (err) {
+      console.log(err);
+      alert("Patient Registration Failure!", err);
+      setIsLoding(false);
+    }
+  };
+  
+  //--------------------------------------------------------------------
+  const [deletevalues, setDValues] = useState({
+    appointmentId: "",
+    patientId: "",
+    email: "",
+  });
+  const [disLoding, setDIsLoding] = useState(false);
+  const onDChange = (e) => {
+    setDValues({ ...deletevalues, [e.target.name]: e.target.value });
+  };
+  //handleDeleteSubmit
+  const handleDeleteSubmit = async (e) => {
+    e.preventDefault();
+    setDIsLoding(true);
+    try {
+      const responce = await axios.delete(
+        `http://localhost:9098/api/appointment/delete/${deletevalues.appointmentId}`,
+        {
+          data: {
+            patientId: deletevalues.patientId,
+            email: deletevalues.email
+          }
+        }
+      );
+      alert("Appointment Cancel Successful");
+    } catch (err) {
+      console.log(err);
+      alert("Appointment Cancel Failure!");
+    }
+    setDIsLoding(false);
+  };
+  //--------------------------------------------------------------------
+  console.log(values);
+  console.log(deletevalues);
+
+  const deleteinputs = [
+    {
+      id: 31,
+      inpuConClass: "fromInput field-con",
+      name: "patientId",
+      placeholder: "Patient ID",
+      type: "text",
+      errorMessage: "Patient ID should be 6 characters long",
+      label: "Patient ID",
+      required: true,
+    },
+
+    {
+      id: 30,
+      inpuConClass: "fromInput field-con",
+      name: "appointmentId",
+      placeholder: "Appointment ID",
+      type: "text",
+      errorMessage: "Appointment ID should be 8 characters long",
+      label: "Appointment ID",
+      required: true,
+    },
+    {
+      id: 32,
+    inpuConClass: "fromInput field-con",
+    name: "email",
+    placeholder: "Email",
+    type: "email",
+    errorMessage: "Please enter a valid email address",
+    label: "Email",
+    required: true,
+  },
+  ];
+  //--------------------------------------------------------------------
+
   const apinputs = [
     {
       id: 1,
       inpuConClass: "fromInput field-con",
-      name: "patientid",
+      name: "patientId",
       placeholder: "Patient ID",
       type: "text",
-      errorMessage:
-        "Patient ID should 6-15 characters & should have at least one letter and number. special characters can't be used !",
+      errorMessage: "Patient ID should be 6 characters long",
       label: "Patient ID",
-      pattern: `^(?=.*[a-z])[a-z0-9]{6,15}$`,
+      maxLength: "6",
       required: true,
     },
     {
       id: 3,
       inpuConClass: "fromInput field-con",
-      name: "doctorname",
+      name: "doctorName",
       placeholder: "Doctor Name",
       type: "text",
-      errorMessage: "Please enter your name",
+      errorMessage: "Please enter doctor(name) who reccmended the test",
       label: "Doctor Name",
       required: true,
     },
+
     {
       id: 2,
       inpuConClass: "fromInput field-con",
       name: "email",
       placeholder: "Email",
       type: "email",
-      errorMessage: "Email address is not valid !",
+      errorMessage: "Please enter a valid email address",
       label: "Email",
       required: true,
     },
     {
-      id: 4,
-      inpuConClass: "fromInput field-con",
-      name: "phonenumber",
-      placeholder: "07* *******",
-      type: "tel",
-      pattern: "[0-9]{10}$",
-      maxLength: "10",
-      errorMessage: "Phone number is incorrect !",
-      label: "Phone Number",
+      id: 5,
+      inpuConClass: "fromInput field-con bir-date",
+      name: "date",
+      placeholder: "Date",
+      type: "date",
+      errorMessage: "Please enter your date",
+      label: "Date",
       required: true,
     },
   ];
   const selectapinputs = [
     {
+      id: 56,
+      inpuConClass: "fromInput field-con",
+      name: "time",
+      placeholder: "time",
+      type: "",
+      optionName1: "please select time slot",
+      optionName2: "8:00am - 10:00am",
+      optionName3: "10:30 - 12:30pm",
+      optionName4: "2:00pm - 4:00pm",
+      optionName5: "6:00pm - 8:00pm",
+      value1: "",
+      value2: "8:00am - 10:00am",
+      value3: "10:30 - 12:30pm",
+      value4: "2:00pm - 4:00pm",
+      value5: "6:00pm - 8:00pm",
+      errorMessage: "Please select time slot",
+      label: "time slot",
+      required: true,
+    },
+    {
       id: 55,
       inpuConClass: "fromInput field-con",
-      name: "testcatagory",
-      placeholder: "testcatagory",
+      name: "testCatagory",
+      placeholder: "Test Catagory",
       type: "",
-      pattern: "[0-9]{10}$",
-      maxLength: "10",
-      optionName1: "Blood Count",
-      optionName2: "Urinalysis",
-      optionName3: "Glucose",
-      optionName4: "ESR",
-      value1: "Blood Count",
-      value2: "Urinalysis",
-      value3: "Glucose",
-      value4: "ESR",
+      optionName1: "Please select test catagory",
+      optionName2: "Blood Count",
+      optionName3: "Urinalysis",
+      optionName4: "Glucose",
+      optionName5: "ESR",
+      value1: "",
+      value2: "Blood Count",
+      value3: "Urinalysis",
+      value4: "Glucose",
+      value5: "ESR",
       errorMessage: "Please select test catagory",
-      label: "Phone Number",
+      label: "Test catagory",
       required: true,
     },
   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
   console.log(values);
   return (
     <main className="reg-from-center">
       <div className="page-name-con">
+      <div className="page-bg-min-con-nav">
+          <div className="page-background-nav page-back-1-nav">
+            <FaHouseMedical />
+          </div>
+          <div className="page-background-nav page-back-5-nav">
+            <CiMedicalCross />
+          </div>
+          <div className="page-background-nav page-back-2-nav">
+            <CiMedicalCross />
+          </div>
+          <div className="page-background-nav page-back-3-nav">
+            <FaHandHoldingMedical />
+          </div>
+          <div className="page-background-nav page-back-4-nav">
+            <CiMedicalClipboard />
+          </div>
+        </div>
         <div className="page-name-spaceholder"></div>
         <span className="page-log-span">
-          <FaWpforms />
+          <BiSpreadsheet />
         </span>
-        <h1 className="page-name-h1">Request Appointment</h1>
+        <h1 className="page-name-h1">Appointment</h1>
       </div>
 
       <section className="form-main-continer">
+        <div className="page-bg-min-con">
+          <div className="page-background page-back-4">
+            <FaHouseMedical />
+          </div>
+          <div className="page-background page-back-5">
+            <CiMedicalCross />
+          </div>
+          <div className="page-background page-back-2">
+            <CiMedicalCross />
+          </div>
+          <div className="page-background page-back-3">
+            <FaHandHoldingMedical />
+          </div>
+          <div className="page-background page-back-1">
+            <CiMedicalClipboard />
+          </div>
+        </div>
         <div className="form-name-logo-con">
           <div className="form-icon-con">
-            <FaWpforms />
+            <BiSpreadsheet />
           </div>
           <div className="form-name-con">
-            <span>Request Appointment</span>
+            <span>Add Appointment</span>
           </div>
         </div>
 
-        <form className="reg-from-con" onSubmit={handleSubmit}>
+        <form className="reg-from-con" method="POST" onSubmit={handleSubmit}>
           {apinputs.map((input) => (
             <FormInput
               key={input.id}
@@ -126,10 +276,29 @@ export default function Appointments() {
             />
           ))}
 
-          <button>Submit</button>
+          <button disabled={isLoding}>Submit</button>
         </form>
-       
-        
+        {/* --------------------------------------------------------------------- */}
+        <div className="form-name-logo-con">
+          <div className="form-icon-con">
+            <MdCancel />
+          </div>
+          <div className="form-name-con">
+            <span>Cancel</span>
+          </div>
+        </div>
+        <form className="reg-from-con" onSubmit={handleDeleteSubmit}>
+          {deleteinputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={deletevalues[input.name]}
+              onChange={onDChange}
+            />
+          ))}
+
+          <button disabled={disLoding}>Cancel</button>
+        </form>
       </section>
     </main>
   );

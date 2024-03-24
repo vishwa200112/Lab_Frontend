@@ -18,7 +18,7 @@ export default function Patients() {
         <button>Submit</button>
       </form>
       <p>
-        Already registered !
+        Already registered?
         <br />
       </p>
       <span className="sign-in-span">

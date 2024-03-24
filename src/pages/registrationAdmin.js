@@ -2,9 +2,8 @@
 
 import { CiMedicalCross, CiMedicalClipboard } from "react-icons/ci";
 import { FaHandHoldingMedical,FaHouseMedical } from "react-icons/fa6";
-
-import { SiCashapp } from "react-icons/si";
-// import { Link } from "react-router-dom";
+import { MdOutlineStreetview } from "react-icons/md";
+import { Link } from "react-router-dom";
 import FormInput from "../components/formInput";
 import { useState} from "react";
 import axios from "axios";
@@ -12,13 +11,10 @@ import axios from "axios";
 export default function Registration() {
   
   const [values, setValues] = useState({
-    name: "",
-    date: "",
-    patientId: "",
-    appointmentId: "",
+    adminName: "",
     email: "",
-    amount: ""
-   
+    password: "",
+
   });
   const [isLoding, setIsLoding] = useState(false);
  
@@ -30,22 +26,18 @@ export default function Registration() {
     e.preventDefault();
     setIsLoding(true);
     try {
-      const responce = await axios.post('http://localhost:9098/api/appointment/payment', {
-        name: values.name,
-        date: values.date,
-        patientId: values.patientId, 
-        appointmentId: values. appointmentId,
+      const responce = await axios.post('http://localhost:9098/api/admin/Reg', {
+        adminName: values.adminName,
         email: values.email,
-        amount: values.amount
-        
-        
+        password: values.password,
+
     });
-    alert("Payment Successful");
+    alert("Admin Registration Successful");
    
     }
     catch(err){
       console.log(err);
-      alert("Payment Failure!");
+      alert("Admin already exsist or invalid email. Registration Failure!");
     }
     setIsLoding(false);
   }
@@ -56,34 +48,14 @@ export default function Registration() {
     {
       id: 10,
       inpuConClass: "fromInput field-con",
-      name: "name",
-      placeholder: "Name",
+      name: "adminName",
+      placeholder: "Full Name",
       type: "text",
-      errorMessage: "Please enter your name",
-      label: "Name",
+      errorMessage: "Please enter your first name",
+      label: "Full Name",
       required: true,
     },
-    {
-      id: 1,
-      inpuConClass: "fromInput field-con",
-      name: "patientId",
-      placeholder: "Patient ID",
-      type: "text",
-      errorMessage: "Patient ID should be 6 characters long",
-      label: "Patient ID",
-      maxLength: "6",
-      required: true,
-    },
-    {
-      id: 30,
-      inpuConClass: "fromInput field-con",
-      name: "appointmentId",
-      placeholder: "Appointment ID",
-      type: "text",
-      errorMessage: "Appointment ID should be 8 characters long",
-      label: "Appointment ID",
-      required: true,
-    },
+ 
     {
       id: 2,
       inpuConClass: "fromInput field-con",
@@ -94,57 +66,67 @@ export default function Registration() {
       label: "Email",
       required: true,
     },
-    {
-      id: 5,
-      inpuConClass: "fromInput field-con bir-date",
-      name: "date",
-      placeholder: "Date",
-      type: "date",
-      errorMessage: "Please enter your date",
-      label: "Date",
-      required: true,
-    },
-    {
-      id: 11,
-      inpuConClass: "fromInput field-con",
-      name: "amount",
-      placeholder: "Amount",
-      type: "number",
-      errorMessage: "Please enter amount",
-      label: "amount",
-      required: true,
-    },
+  
    
   ];
 
-  
+  const inputs2 = [
+
+    {
+      id: 7,
+      inpuConClass: "fromInput field-con",
+      name: "password",
+      placeholder: "Password",
+      type: "password",
+      errorMessage:
+        "Password should be 8-20 characters and include 1 letter, 1 number and 1 special character",
+      pattern: `^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,19}$`,
+      label: "Password",
+      required: true,
+    },
+    {
+      id: 8,
+      inpuConClass: "fromInput field-con",
+      name: "confirmpassword",
+      placeholder: "Confirm Password",
+      type: "password",
+      errorMessage: "Password don't match",
+      pattern: values.password,
+      label: "Confirm Password",
+      required: true,
+    },
+  ];
 
 
   return (
     <main className="reg-from-center">
       <div className="page-name-con">
       <div className="page-bg-min-con-nav">
-          <div className="page-background-nav page-back-4-nav">
-            <FaHouseMedical />
+          <div className="page-background-nav page-back-1-nav">
+           
+            <CiMedicalCross />
           </div>
           <div className="page-background-nav page-back-3-nav">
+            
             <CiMedicalCross />
           </div>
           <div className="page-background-nav page-back-2-nav">
-            <CiMedicalCross />
-          </div>
-          <div className="page-background-nav page-back-5-nav">
             <FaHandHoldingMedical />
           </div>
-          <div className="page-background-nav page-back-1-nav">
+          <div className="page-background-nav page-back-4-nav">
+          <CiMedicalClipboard />
+          <FaHouseMedical />
+          </div>
+         
+          <div className="page-background-nav page-back-5-nav">
             <CiMedicalClipboard />
           </div>
         </div>
         <div className="page-name-spaceholder"></div>
         <span className="page-log-span">
-          <SiCashapp />
+          <MdOutlineStreetview />
         </span>
-        <h1 className="page-name-h1">Payment</h1>
+        <h1 className="page-name-h1">Admin Registration</h1>
       </div>
 
       <section className="form-main-continer">
@@ -168,10 +150,10 @@ export default function Registration() {
 
         <div className="form-name-logo-con">
           <div className="form-icon-con">
-            <SiCashapp />
+            <MdOutlineStreetview />
           </div>
           <div className="form-name-con">
-            <span>Payment</span>
+            <span>Admin Registration</span>
           </div>
         </div>
 
@@ -184,14 +166,30 @@ export default function Registration() {
               onChange={onChange}
             />
           ))}
-          
-       
+         
+           {inputs2.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={values[input.name]}
+              onChange={onChange}
+            />
+          ))}
 
           <button
           disabled={isLoding}
-          >Pay</button>
+          >Submit</button>
         </form>
-       
+        <p className="alredy-have-a-p">
+          Already registered?
+          <br />
+        </p>
+        <span className="sign-in-span">
+          {/*put router link here*/}
+          <Link className="sign-in-link" to="/adminlogin">
+            Sign In
+          </Link>
+        </span>
       </section>
     </main>
   );

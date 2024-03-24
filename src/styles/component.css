@@ -87,14 +87,14 @@
 }
 .nav-list {
   height: 100%;
-  max-height: 400px;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   width: 100%;
   text-decoration: none !important;
-  grid-row: 2 / span 3;
+  grid-row: 2 / span 4;
   grid-column: 1 / span 1;
   /* border: solid 1px white; */
   padding: 3rem 0;
@@ -103,7 +103,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: center;
   max-width: 300px;
   /* min-height: 3rem; */
   gap: 2rem;
@@ -134,11 +134,10 @@
 }
 .nav-item-icon {
   font-size: var(--fontsize-nav-bar-links-icon);
-
 }
 .nav-item-con:hover {
-  border: solid .3rem var(--light-blue);
- 
+  border: solid 0.3rem var(--light-blue);
+
   padding: 1rem 1.8rem;
   text-decoration: none !important;
   -webkit-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
@@ -175,8 +174,8 @@
   transition: 0.2s ease-in-out;
   width: fit-content;
   height: fit-content;
-  text-decoration: none !important;
   transition: 0.3s linear !important;
+  text-decoration: none;
 }
 @media (min-width: 809px) {
   .logout-con {
@@ -228,6 +227,7 @@
   flex-direction: column;
   gap: 1rem;
   font-size: var(--fontsize-nav-bar-links-18);
+  text-decoration: none;
 }
 .logout-con-active {
   display: flex;
@@ -256,6 +256,7 @@
   grid-row: 6 / span 1;
   grid-column: 1 / span 1;
   padding-left: 0;
+  text-decoration: none;
 }
 .logout-active {
   display: flex;
@@ -272,17 +273,20 @@
   border: solid 3px var(--text-white);
   padding: 0.6rem 1.4rem;
   transition: 0.3s linear !important;
+  text-decoration: none;
 }
 @media (min-width: 809px) {
   .logout-con span {
     display: block;
     padding-left: 0.5rem;
+    text-decoration: none;
   }
 }
 .logout-active:hover {
-  border: solid .3rem var(--light-blue);
+  border: solid 0.3rem var(--light-blue);
   /* border: none; */
   transition: 0.2s ease-in-out;
+  text-decoration: none;
 }
 
 /*------------admin login page--------------------*/
@@ -292,13 +296,13 @@
   color: blue;
 }
 .active {
-  
-  border: solid .3rem var(--light-blue);
+  text-decoration: none;
+  border: solid 0.3rem var(--light-blue);
   padding: 1rem 1.8rem;
   text-decoration: none !important;
-  -webkit-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.2);
 }
 /*--------------patient login page------------------*/
 /*-------------page name h1-------------------*/
@@ -306,7 +310,7 @@
   position: fixed;
   top: 0;
   right: 0;
- 
+
   z-index: 500;
   width: 100%;
   height: 6rem;
@@ -317,17 +321,17 @@
   background-color: var(--h-dark-blue);
   padding: 0 4rem;
   gap: 1rem;
-  border-radius: var(--bg-bo-rds);
+
   -webkit-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
 }
-.page-name-spaceholder{
+.page-name-spaceholder {
   width: 100%;
   max-width: 3rem;
 }
-.page-log-span{
-  font-size: calc(var(--fontsize-nav-site-logo) + 1rem) ;
+.page-log-span {
+  font-size: calc(var(--fontsize-nav-site-logo) + 0.5rem);
   color: var(--text-white);
 }
 .page-name-h1 {
@@ -340,43 +344,146 @@
     height: 8rem;
     min-height: 8rem;
   }
-  .page-name-spaceholder{
-   
+  .page-name-spaceholder {
     max-width: 20rem;
   }
 }
+.page-bg-min-con {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.page-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: var(--text-white-form);
+  opacity: 5%;
+}
+.page-back-1 {
+  top: -55%;
+  left: 50%;
+  font-size: 50rem;
+  transform: rotate(-40deg);
+}
+.page-back-2 {
+  display: none;
+  top: -20%;
+  left: 10%;
+  font-size: 35rem;
+  transform: rotate(200deg);
+}
+.page-back-3 {
+  top: 30%;
+  left: -10%;
+  font-size: 50rem;
+  transform: rotate(10deg);
+}
+.page-back-5 {
+  top: 0%;
+  left: 10%;
+  font-size: 50rem;
+  transform: rotate(20deg);
+}
+@media (min-width: 809px) {
+  .page-back-2 {
+    display: block;
+  }
+}
+
+.page-back-4 {
+  top: 80%;
+  left: 20%;
+  font-size: 40rem;
+  transform: rotate(30deg);
+}
 /*--------------page name h1------------------*/
+.page-bg-min-con-nav {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100;
+  overflow: hidden;
+}
+.page-background-nav {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: var(--text-white);
+  opacity: 10%;
+}
+.page-back-1-nav {
+  top: -55%;
+  left: 50%;
+  font-size: 50rem;
+  transform: rotate(-40deg);
+}
+.page-back-2-nav {
+  display: none;
+  top: -30%;
+  left: 10%;
+  font-size: 35rem;
+  transform: rotate(200deg);
+}
+.page-back-3-nav {
+  top: 50%;
+  left: -10%;
+  font-size: 50rem;
+  transform: rotate(-20deg);
+}
+.page-back-5-nav {
+  top: -20%;
+  left: -10%;
+  font-size: 50rem;
+  transform: rotate(30deg);
+}
+@media (min-width: 809px) {
+  .page-back-2-nav {
+    display: block;
+  }
+}
+
+.page-back-4-nav {
+  top: 80%;
+  left: 20%;
+  font-size: 40rem;
+  transform: rotate(30deg);
+}
 /*--------------form name logo------------------*/
-.form-name-logo-con{
+.form-name-logo-con {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: fixed;
+  justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
   padding-top: 4rem;
-  
 }
-.form-icon-con{
-  font-size: calc(var(--fontsize-nav-site-name-25) + 2rem) ;
-  color: var(--text-white);
+.form-icon-con {
+  font-size: calc(var(--fontsize-nav-site-name-25) + 1rem);
+  color: var(--text-white-form);
 }
-.form-name-con{
-  font-size: calc(var(--fontsize-nav-site-name-25) + .6rem) ;
-  color: var(--text-white);
+.form-name-con {
+  font-size: calc(var(--fontsize-nav-site-name-25) + 0.4rem);
+  color: var(--text-white-form);
 }
 @media (min-width: 809px) {
-  .form-icon-con{
-    font-size: calc(var(--fontsize-nav-site-name-25) + 3rem) ;
-    color: var(--text-white);
+  .form-icon-con {
+    font-size: calc(var(--fontsize-nav-site-name-25) + 2rem);
+    color: var(--text-white-form);
   }
-  .form-name-con{
-    font-size: calc(var(--fontsize-nav-site-name-25) + .8rem) ;
-    color: var(--text-white);
+  .form-name-con {
+    font-size: calc(var(--fontsize-nav-site-name-25) + 0.6rem);
+    color: var(--text-white-form);
   }
 }
 /*--------------form name logo------------------*/
-
 
 /*--------------Registration from------------------*/
 .reg-from-center {
@@ -385,24 +492,24 @@
   display: flex;
   padding: 2rem;
   gap: 2rem;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-
 }
 .form-main-continer {
-
+  position: relative;
   width: 100%;
+
   height: 200%;
   z-index: 100;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   padding: 2rem 1.5rem;
   gap: 1.2rem;
-  background-color: var(--h-dark-blue);
-  color: var(--h-dark-blue);
+  background-color: var(--h-dark-blue-form);
+  color: var(--text-white-form);
   border-radius: var(--bg-bo-rds);
   -webkit-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.3);
@@ -414,26 +521,27 @@
   min-height: 4.5rem;
   width: 100%;
   max-width: 25rem;
-  border: solid var(--light-blue) 3px;
+  max-height: 4rem;
+  border: solid var(--text-white-form) 3px;
   font-size: var(--fontsize-from-button);
-  background-color: var(--h-dark-blue);
-  color: var(--light-blue);
+  background-color: var(--h-dark-blue-form);
+  color: var(--text-white-form);
   border-radius: var(--bg-bo-rds);
-  
-  transition: 0.3s linear !important;
+  z-index: 1000;
+  cursor: pointer;
+  transition: 0.2s linear !important;
 }
 @media (min-width: 809px) {
   .form-main-continer {
-    padding: 4rem 3rem;
+    padding: 4rem 1rem;
   }
 }
 
 .form-main-continer button:hover {
-  background-color: var(--h-dark-blue);
+  background-color: var(--h-dark-blue-form);
   color: var(--light-blue-form);
   border: solid var(--light-blue-form) 3px;
   /* font-size: calc(var(--fontsize-from-button) + .2rem) ; */
-  
 }
 .reg-from-con {
   width: 100%;
@@ -441,8 +549,8 @@
   /* border: solid red 2px; */
   max-width: 80rem;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
 }
@@ -467,60 +575,59 @@
   max-width: fit-content;
   padding: 0.5rem;
   border: none !important;
-  background-color: var(--h-dark-blue);
+  background-color: var(--h-dark-blue-form);
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
-  color: var(--light-blue);
+  color: var(--text-white-form);
+  border-radius: var(--bg-bo-rds);
 }
 .field-con input {
   height: 4.5rem;
   max-width: 35rem;
   font-family: Arial, Helvetica, sans-serif;
-  background-color:transparent;
+  background-color: transparent;
   padding: 0.5rem 2rem;
   font-size: var(--fontsize-from-input-25);
   font-weight: 400;
-  border: solid var(--light-blue) 2px;
+  border: solid var(--text-white-form) 2px;
   border-radius: var(--bg-bo-rds);
   outline: none;
-  color: red;
+  color: var(--text-white-form);
 }
-.field-con select{
+.field-con select {
   cursor: pointer;
   height: 4.5rem;
   max-width: 35rem;
   font-family: Arial, Helvetica, sans-serif;
-  background-color:transparent;
+  background-color: transparent;
   padding: 0.5rem 2rem;
   font-size: var(--fontsize-from-input-25);
   font-weight: 400;
   border: solid var(--light-blue) 2px;
   border-radius: var(--bg-bo-rds);
   outline: none;
-  color: var(--light-blue);
+  color: var(--text-white-form);
 
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image:
-  linear-gradient(135deg,  var(--light-blue) 50%, transparent 50%),
-  linear-gradient(45deg, transparent 50%,  var(--light-blue) 50%),
-  linear-gradient(to right, #ccc, #ccc);
-  background-position:
-  calc(100% - 15px) 1em,
-  calc(100% - 20px) 1em,
-  calc(100% - 2.5em) 0.7em;
-background-size:
-  5px 5px,
-  5px 5px,
-  1px 1.5em;
+  background-image: linear-gradient(
+      135deg,
+      var(--text-white-form) 50%,
+      transparent 50%
+    ),
+    linear-gradient(45deg, transparent 50%, var(--text-white-form) 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.7em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
-  border-color: var(--light-blue);
+  border-color: var(--text-white-form);
   outline: 0;
 }
 
-.field-con option{
-  background-color: var(--h-dark-blue);
+.field-con option {
+  background-color: var(--h-dark-blue-form);
   border-radius: var(--bg-bo-rds);
   border: var(--h-dark-blue) solid 1px !important;
   outline: none;
@@ -530,32 +637,31 @@ input:invalid[focused="true"] ~ label {
   border: solid red 2px !important;
 }
 .field-con input:focus {
-  border: solid var(--light-blue) 4px;
+  border: solid var(--text-white-form) 4px;
 }
-.sign-in-span{
+.sign-in-span {
   height: 4.5rem;
+  z-index: 1000;
 }
 .sign-in-link {
-  
   font-family: Arial, Helvetica, sans-serif;
   font-size: var(--fontsize-from-button);
   border: solid var(--light-blue-form) 2px;
-  color: var(--light-blue);
+  color: var(--text-white-form);
   padding: 0.6rem 2rem;
   text-decoration: none;
   border-radius: var(--bg-bo-rds);
-  border: solid var(--light-blue) 3px;
+  border: solid var(--text-white-form) 3px;
   height: 4.5rem;
   transition: 0.3s linear !important;
-  
 }
 .sign-in-link:hover {
   border: solid var(--light-blue-form) 3px;
   color: var(--light-blue-form);
 }
-.alredy-have-a-p{
-  color: var(--light-blue);
-  padding: .2rem;
+.alredy-have-a-p {
+  color: var(--text-white-form);
+  padding: 0.2rem;
 }
 .errormsg {
   padding-left: 1rem;
@@ -569,40 +675,11 @@ input:invalid ~ .errormsg {
 input:invalid[focused="true"] ~ .errormsg {
   display: block;
 }
-
-.gender-con {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 12rem;
-  gap: 1rem;
-  padding: 0.5rem 2rem;
-  /* border: solid red 1px; */
-  border: solid var(--light-blue) 2px !important;
-  border-radius: var(--bg-bo-rds);
-  height: 4.5rem !important;
+.gender {
+  max-width: 25rem !important;
 }
-.gender-con label {
-  font-size: 1.4rem !important;
-  color: var(--light-blue);
-}
-.gender-con span {
-  position: absolute;
-  color: var(--light-blue);
-  left: 110%;
-  width: 10rem;
-}
-.genderinput {
-  position: absolute;
-  top: 1.2rem;
-  right: 0.8rem;
-  width: 1.5rem !important;
-  height: 1.5rem !important;
+.bir-date {
+  max-width: 25rem !important;
 }
 /* .reg-con-username {
 }
@@ -637,7 +714,7 @@ input:invalid[focused="true"] ~ .errormsg {
 .fromdropdown option {
   border-radius: var(--bg-bo-rds);
   border: solid var(--light-blue-form) 2px;
-  outline: var(--light-blue-form);
+  outline: var(--text-white-form);
 }
 /*-------------Appointment form-------------------*/
 .login-page-main-continer {
@@ -646,11 +723,10 @@ input:invalid[focused="true"] ~ .errormsg {
   height: 100%;
   /* background-color: var(--dark-blue); */
   background-color: var(--h-dark-blue);
-  z-index: 0;
+  z-index: 2000;
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
 .login-main-continer {
   width: 100%;
@@ -664,17 +740,15 @@ input:invalid[focused="true"] ~ .errormsg {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 @media (min-width: 809px) {
   .login-main-continer {
     max-width: 40rem !important;
-    max-height: 30rem !important;
+    max-height: 25rem !important;
   }
 }
 
 .admin-log-form {
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -683,10 +757,121 @@ input:invalid[focused="true"] ~ .errormsg {
   width: 100%;
   max-width: 30rem;
 }
+.min-hight {
+  min-height: 3rem;
+}
+
+/*--------------data fatch------------------*/
+.table-main-con {
+  text-align: center;
+  display: flex;
+ min-height: 1rem;
+ max-height: fit-content;
+  flex-direction: column;
+  align-items: center;
+  z-index: 500;
+  width: 100%;
+  overflow: scroll;
+}
+
+.table-h1 {
+  font-size: var(--fontsize-nav-site-logo);
+  font-weight: 400;
+}
+.table {
+  border-radius: var(--bg-bo-rds);
+}
+
+.table thead {
+  width: 100%;
+  border: solid 1px;
+  background-color: transparent;
+  border: solid var(--light-blue) 1px;
+  border-radius: var(--bg-bo-rds);
+}
+
+.table tr {
+  width: 100%;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.table th {
+  width: fit-content;
+  font-size: var(--fontsize-from-input-25);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem 0.8rem;
+  border: solid var(--text-white-form) 2px;
+  border-radius: var(--bg-bo-rds);
+  text-align: center;
+  overflow: hidden;
+}
+.table-body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--fontsize-from-input-25);
+  width: 100%;
+  border-radius: var(--bg-bo-rds);
+}
+.table-body tr {
+  border-radius: var(--bg-bo-rds);
+}
+.table-body td {
+  text-align: center;
+  border-radius: var(--bg-bo-rds);
+  padding: 0.5rem;
+}
+.btn-primary {
+  cursor: pointer;
+
+  max-height: 0.5rem !important;
+  border: none !important;
+}
+.btn-primary:hover {
+  border: #dadada;
+  border-radius: var(--bg-bo-rds);
+}
 
 /*--------------------------------*/
 /*--------------------------------*/
+.welcome-user{
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--text-white);
+}
+.welcom-img-con{
+  width: 100%;
+  max-width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: solid 1px red; */
+}
+.welcom-img-con img{
+max-width: 40%;
+min-width: 30rem;
+}
 /*--------------------------------*/
-/*--------------------------------*/
+.welcom-img-bg{
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+}
+.bg-blur{
+
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+.welcom-img-login{
+  z-index: 100;
+}
 /*--------------------------------*/
 /*--------------------------------*/

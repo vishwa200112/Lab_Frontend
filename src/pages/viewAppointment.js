@@ -1,62 +1,53 @@
-
 import { CiMedicalCross, CiMedicalClipboard } from "react-icons/ci";
 import { FaHandHoldingMedical, FaHouseMedical } from "react-icons/fa6";
-import { MdManageSearch } from "react-icons/md";
+import { MdPageview } from "react-icons/md";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import FormInput from "../components/formInput";
-export default function TestDetails() {
-  const [values, setTDValues] = useState({
-    patientid: "",
-  });
-  const [patient, setpatientdt] = useState([]);
-  const [appointments, setpatientdat] = useState([]);
 
-  const [pdisLoding, setpdIsLoding] = useState(false);
+export default function ViewAppointment() {
+  const [values, setValues] = useState({
+    date: "",
+  });
+
+  const [appointments, setAppointments] = useState([]);
+  const [isLoding, setIsLoding] = useState(false);
 
   const onChange = (e) => {
-    setTDValues({ ...values, [e.target.name]: e.target.value });
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
-  const pdhandleSubmit = async (e) => {
+
+  const fetchAppointments = async (e) => {
     e.preventDefault();
-    setpdIsLoding(true);
+    setIsLoding(true);
     try {
       const response = await axios.get(
-        `http://localhost:9098/api/patient/id/${values.patientid}`
+        `http://localhost:9098/api/appointment/today/${values.date}`
       );
-      setpatientdt(response.data);
-
-      const responses = await axios.get(
-        `http://localhost:9098/api/appointment/pAppointment/${values.patientid}`
-      );
-      setpatientdat(responses.data);
-
-      setpdIsLoding(false);
+      setAppointments(response.data);
+      setIsLoding(false);
     } catch (error) {
       console.error("Error fetching appointments:", error);
-      setpdIsLoding(false);
+      setIsLoding(false);
     }
-
-   
   };
 
-  const tdinputs = [
+  console.log(values.date);
+
+  const inputs = [
     {
-      id: 1,
-      inpuConClass: "fromInput field-con",
-      name: "patientid",
-      placeholder: "Patient ID",
-      type: "text",
-      errorMessage:
-        "Patient ID should be 6 characters long",
-      label: "Patient ID",
-     
+      id: 50,
+      inpuConClass: "fromInput field-con bir-date",
+      name: "date",
+      placeholder: "Date",
+      type: "date",
+      errorMessage: "Please select date",
+      label: "Date",
       required: true,
     },
   ];
 
-  console.log(values);
   return (
     <main className="reg-from-center">
       <div className="page-name-con">
@@ -79,9 +70,9 @@ export default function TestDetails() {
         </div>
         <div className="page-name-spaceholder"></div>
         <span className="page-log-span">
-          <MdManageSearch />
+          <MdPageview />
         </span>
-        <h1 className="page-name-h1"> Patient Details</h1>
+        <h1 className="page-name-h1">View Appointment</h1>
       </div>
 
       <section className="form-main-continer">
@@ -104,16 +95,19 @@ export default function TestDetails() {
         </div>
         <div className="form-name-logo-con">
           <div className="form-icon-con">
-            <MdManageSearch />
+            <MdPageview />
           </div>
           <div className="form-name-con">
-            <span></span>
+            <span>View Appointment</span>
           </div>
         </div>
-       
 
-        <form className="reg-from-con" onSubmit={pdhandleSubmit}>
-          {tdinputs.map((input) => (
+        <form
+          className="reg-from-con"
+          onSubmit={fetchAppointments}
+          method="POST"
+        >
+          {inputs.map((input) => (
             <FormInput
               key={input.id}
               {...input}
@@ -121,70 +115,12 @@ export default function TestDetails() {
               onChange={onChange}
             />
           ))}
-          <button button disabled={pdisLoding}>
+
+          <button disabled={isLoding}>
             Search
           </button>
         </form>
-        <div className="form-name-logo-con">
-          <div className="form-icon-con">
-           
-          </div>
-          <div className="form-name-con">
-            <span>Patient Details</span>
-          </div>
-        </div>
-
-        <div className="table-main-con">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Patient ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Gender</th>
-                <th>Number</th>
-                <th>Email</th>
-                <th>password</th>
-                
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {patient.map((Patient) => (
-                <tr key={Patient.id}>
-                  <td>{Patient.patientId}</td>
-                  <td>{Patient.patientFName}</td>
-                  <td>{Patient.patientLName}</td>
-                  <td>{Patient.gender}</td>
-                  <td>{Patient.number}</td>
-                  <td>{Patient.email}</td>
-                  <td>{Patient.password}</td>
-                
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="form-name-logo-con">
-          <div className="form-icon-con">
-        
-          </div>
-          <div className="form-name-con">
-            <span>Patient Appointment Details</span>
-          </div>
-        </div>
-        {/* <form className="reg-from-con" onSubmit={padhandleSubmit}>
-          {tdinputs.map((input) => (
-            <FormInput
-              key={input.id}
-              {...input}
-              value={values[input.name]}
-              onChange={onChange}
-            />
-          ))}
-
-          <button button disabled={padisLoding}>Search</button>
-        </form> */}
-
+        <h1 className="table-h1">Appointments</h1>
         <div className="table-main-con">
           <table className="table table-striped">
             <thead>
@@ -200,7 +136,7 @@ export default function TestDetails() {
               </tr>
             </thead>
             <tbody className="table-body">
-            {appointments.map((appointment) => (
+              {appointments.map((appointment) => (
                 <tr key={appointment.id}>
                   <td>{appointment.appointmentId}</td>
                   <td>{appointment.testCatagory}</td>
@@ -210,7 +146,7 @@ export default function TestDetails() {
                   <td>{appointment.email}</td>
                   <td>{appointment.patientId}</td>
                   <td>
-                    <button className="btn btn-primary">
+                  <button className="btn btn-primary">
                     <Link className="sign-in-link" to="/payment">
                       Pay
                     </Link>
